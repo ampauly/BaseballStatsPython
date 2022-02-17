@@ -24,4 +24,7 @@ class Player():
         """Returns average exit velocity"""
         return self.avgEv
 
+    def toString(self):
+        """Prints out a player object"""
+        return self.firstName + self.lastName + self.baDiff + self.slgDiff + self.avgEv
     

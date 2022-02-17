@@ -8,18 +8,6 @@ import csv
 #initial setup
 print("Welcome to the baseball stats app\nEnter year to continue")
 playerList = []
-
-def run():
-    """Function which runs the program"""
-    year = (int(input("What year: ")))
-
-    sortedPlayerList = []
-    for player in playerList:
-        if player.returnYear() == year:
-            sortedPlayerList.append(player)
-
-
-
 #read the csv file
 seperator = "\n"
 filename = "BaseballStats.csv"
@@ -38,9 +26,29 @@ with open(filepath) as csvDataFile:
         avgEv = row[6]
 
         player1 = Player(firstName, lastName, year, baDiff, slgDiff, avgEv)
+        
         playerList.append(player1)
 
-        
+    """
+    for player in playerList:
+        str = player.toString()
+        print(str)
+    """
 
+def run():
+    """Function which runs the program"""
+    year = (int(input("What year: ")))
+
+    filteredPlayerList = []
+    for player1 in playerList:
+        #print('hey')
+        playerYear = player1.return_year()
+        if playerYear == year:
+            print(player1.toString())
+            filteredPlayerList.append(player1)
+
+    for player in filteredPlayerList:
+        str = player.toString()
+        print(str)
 
 run()
