@@ -1,17 +1,26 @@
 from fileinput import filename
 from hashlib import new
 from tkinter.ttk import Separator
-from player import Player
+from player import*
 from pathlib import Path
 import csv
 
+#initial setup
+print("Welcome to the baseball stats app\nEnter year to continue")
 playerList = []
 
-print("Welcome to the baseball stats app\nEnter year to continue")
-
 def run():
-    year = input("What year: ")
+    """Function which runs the program"""
+    year = (int(input("What year: ")))
 
+    sortedPlayerList = []
+    for player in playerList:
+        if player.returnYear() == year:
+            sortedPlayerList.append(player)
+
+
+
+#read the csv file
 seperator = "\n"
 filename = "BaseballStats.csv"
 filepath = Path(__file__).resolve().parent/filename
@@ -32,4 +41,6 @@ with open(filepath) as csvDataFile:
         playerList.append(player1)
 
         
+
+
 run()
