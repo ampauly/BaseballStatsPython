@@ -7,7 +7,11 @@ class Player():
         self.baDiff = baDiff
         self.slgDiff = slgDiff
         self.avgEv = avgEv
-    
+
+    def return_year(self):
+        """Returns the player's year"""
+        return self.year
+
     def return_baDiff(self):
         """Returns batting average ae"""
         return self.baDiff
@@ -19,4 +23,5 @@ class Player():
     def return_avgEv(self):
         """Returns average exit velocity"""
         return self.avgEv
+
     
