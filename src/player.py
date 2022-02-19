@@ -8,6 +8,14 @@ class Player():
         self.slgDiff = slgDiff
         self.avgEv = avgEv
 
+    def return_firstName(self):
+        """Returns the player's first name"""
+        return self.firstName
+
+    def return_lastName(self):
+        """Returns the player's last name"""
+        return self.lastName
+
     def return_year(self):
         """Returns the player's year"""
         return self.year
@@ -26,5 +34,6 @@ class Player():
 
     def toString(self):
         """Prints out a player object"""
-        return self.firstName + self.lastName + self.baDiff + self.slgDiff + self.avgEv
+        return "({}, {}, {}, {}, {}, {})".format(self.firstName, self.lastName, self.year, self.baDiff, self.slgDiff, self.avgEv)
+
     

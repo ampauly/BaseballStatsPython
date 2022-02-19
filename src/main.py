@@ -1,5 +1,6 @@
 from fileinput import filename
 from hashlib import new
+import string
 from tkinter.ttk import Separator
 from player import*
 from pathlib import Path
@@ -26,29 +27,50 @@ with open(filepath) as csvDataFile:
         avgEv = row[6]
 
         player1 = Player(firstName, lastName, year, baDiff, slgDiff, avgEv)
-        
         playerList.append(player1)
-
-    """
-    for player in playerList:
-        str = player.toString()
-        print(str)
-    """
 
 def run():
     """Function which runs the program"""
     year = (int(input("What year: ")))
+    print("Enter 1 for batting average above expected")
+    print("Enter 2 for slugging above expected")
+    print("Enter 3 for average exit velocity")
+    stat = (int(input("Which stat: ")))
 
+    #filter players based on year
     filteredPlayerList = []
     for player1 in playerList:
-        #print('hey')
         playerYear = player1.return_year()
-        if playerYear == year:
-            print(player1.toString())
+        if int(playerYear) == int(year):
             filteredPlayerList.append(player1)
 
-    for player in filteredPlayerList:
-        str = player.toString()
-        print(str)
+    #sort list based on stat
+    def playerBaDiff_sort(emp):
+        return emp.baDiff
+    
+    def playerSlgDiff_sort(emp):
+        return emp.slgDiff
+
+    def playerAvgEv_sort(emp):
+        return emp.avgEv
+
+    sortedPlayerList = []
+    if int(stat) == 1:
+        sortedPlayerList = sorted(filteredPlayerList, key=playerBaDiff_sort, reverse=True)
+    elif int(stat) == 2:
+        sortedPlayerList = sorted(filteredPlayerList, key=playerSlgDiff_sort, reverse=True)
+    elif int(stat) == 3:
+        sortedPlayerList = sorted(filteredPlayerList, key=playerAvgEv_sort, reverse=True)
+    else:
+        print("Enter valid number")
+    
+    print("The top 3 in " + str(year) + ":")
+    for x in range(3):
+        s = sortedPlayerList[x].return_firstName() + " " +sortedPlayerList[x].return_lastName()
+        print(s)
+
+    if input("Run again?(yes/no): ") == "yes":
+        run()
+    
 
 run()
