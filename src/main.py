@@ -1,6 +1,5 @@
 from fileinput import filename
 from hashlib import new
-import string
 from tkinter.ttk import Separator
 from player import*
 from pathlib import Path
